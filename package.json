@@ -1,5 +1,5 @@
 {
-  "name": "restaurantoor",
+  "name": "restaurantor",
   "version": "1.0.0",
   "description": "An app to help you decide where to eat",
   "main": "index.js",
@@ -31,6 +31,7 @@
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "dotenv": "^8.0.0",
     "prop-types": "^15.7.2",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
