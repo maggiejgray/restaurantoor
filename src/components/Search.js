@@ -4,7 +4,7 @@ const Search = (props) => {
   return (
     <>
       <input type='text' onChange={(e) => {props.onChange(e)}}></input>
-      <input type='submit' value='Submit'></input>
+      <input type='submit' value='Submit' onClick={(e) => {props.onClick(e)}}></input>
     </>
   )
 };
