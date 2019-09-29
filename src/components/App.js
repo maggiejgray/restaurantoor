@@ -9,11 +9,16 @@ class App extends React.Component {
     this.state = {
       location: '',
       coordinates: '',
-      searchTerm: ''
+      searchTerm: '',
+      restaurants: [],
+      selected: []
     }
 
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
     this.getGeoCoordinates = this.getGeoCoordinates.bind(this);
+    this.getRestaurants =this.getRestaurants.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleLocationChange(e) {
@@ -29,22 +34,48 @@ class App extends React.Component {
   }
 
   getGeoCoordinates() {
-    axios.get(`/location?searchedLoc=${this.state.location}`)
+    return axios.get(`/location?searchedLoc=${this.state.location}`)
     .then((res) => {
       this.setState({
         coordinates: res.data
       })
+      return res.data;
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error('Error getting geo coordinates:', err)
+    })
+  }
 
+  getRestaurants() {
+    axios.get(`/restaurants?coordinates=${this.state.coordinates}`)
+    .then((res) => {
+      this.setState({
+        restaurants: res.data
+      })
     })
+    .catch((err) => {
+      console.error('Error getting restaurants:', err)
+    })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    this.getGeoCoordinates()
+    .then(() => {
+      this.getRestaurants()
+    })
+    .catch((err) => {
+      console.error('Error handling submit:', err)
+    })
+    
   }
 
   render() {
     return (
       <div id='body'>
         <h1>restaurantor</h1>
-        <Search onChange={this.handleLocationChange} onClick={this.getGeoCoordinates}/>
+        <Search id={'location'}onChange={this.handleLocationChange} onClick={this.handleSubmit}/>
       </div>
     )
   }

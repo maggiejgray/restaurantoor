@@ -15,8 +15,20 @@ app.get('/location', (req, res) => {
     let lng= JSON.stringify(data.data.results[0].geometry.location.lng);
     res.send(lat + ',' + lng);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.error('Error getting location in server:', err);
+  })
+})
 
+
+app.get('/restaurants', (req, res) => {
+  // console.log('req:', req)
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.coordinates}&radius=1500&type=restaurant&key=${process.env.GOOGLE_API_KEY}`)
+  .then((data) => {
+    res.send(data.data.results);
+  })
+  .catch((err) => {
+    console.error('Error getting restaurants in server:', err)
   })
 })
 
