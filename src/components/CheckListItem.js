@@ -2,10 +2,9 @@ import React from 'react';
 
 const CheckListItem = (props) => {
   return (
-    <div class='checklistItem'>
+    <div className='checklistItem'>
       <input 
         type="checkbox" 
-        key={props.key} 
         name={props.restaurant.name} 
         onClick={(e) => {props.selectItem(e)}}
         >

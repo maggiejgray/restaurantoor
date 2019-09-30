@@ -1,21 +1,23 @@
 import React from 'react';
-import Search from './Search';
 import axios from 'axios';
+import Search from './Search';
+import CheckList from './CheckList';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      currentPage: 'landing',
       location: '',
       coordinates: '',
-      searchTerm: '',
+      keyword: '',
       restaurants: [],
       selected: []
     }
 
     this.handleLocationChange = this.handleLocationChange.bind(this);
-    this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.getGeoCoordinates = this.getGeoCoordinates.bind(this);
     this.getRestaurants =this.getRestaurants.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,9 +29,9 @@ class App extends React.Component {
     })
   }
 
-  handleSearchTermChange(e) {
+  handleKeywordChange(e) {
     this.setState({
-      searchTerm: e.target.value
+      keyword: e.target.value
     })
   }
 
@@ -61,6 +63,10 @@ class App extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    this.setState({
+      currentPage: 'decision'
+    })
+
     this.getGeoCoordinates()
     .then(() => {
       this.getRestaurants()
@@ -75,7 +81,16 @@ class App extends React.Component {
     return (
       <div id='body'>
         <h1>restaurantor</h1>
-        <Search id={'location'}onChange={this.handleLocationChange} onClick={this.handleSubmit}/>
+        { this.state.currentPage === 'landing' ? 
+        <div>
+          <Search id={'location'} onChange={this.handleLocationChange} onClick={this.handleSubmit}/>
+        </div>
+        :
+        <div>
+          <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleSubmit}/>
+          <CheckList restaurants={this.state.restaurants}/>
+        </div>
+        }
       </div>
     )
   }

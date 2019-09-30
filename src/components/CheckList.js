@@ -1,13 +1,11 @@
 import React from 'react';
-import CheckListItem from './CheckListItem.js'
+import CheckListItem from './CheckListItem'
 
 const CheckList = (props) => {
   return (
     <div id='restaurantList'>
-      {/* map over props.results and invoke CheckListItem */}
-      {props.restaurants.map((restaurant, key) => {
-        return <CheckListItem restaurant={restaurant} key={key} selectItem={props.selectItem}/>
-        // return <input type="checkbox" key={id} name={restaurant.name}></input>
+      {props.restaurants.map((restaurant) => {
+        return <CheckListItem restaurant={restaurant} key={restaurant.place_id} selectItem={props.selectItem}/>
       })}
     </div>
   )
