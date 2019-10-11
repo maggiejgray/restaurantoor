@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './Search';
 import CheckList from './CheckList';
-import StackItem from './StackItem';
+import Stack from './Stack';
 
 class App extends React.Component {
   constructor(props) {
@@ -80,7 +80,6 @@ class App extends React.Component {
   }
 
   selectItem(e) {
-    // if item not already checked and not in array, add to array
     !this.state.selected.includes(e.target.name) ?
       this.setState({
         selected: this.state.selected.concat(e.target.name)
@@ -103,9 +102,9 @@ class App extends React.Component {
         </div>
         :
         <div>
-          <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleSubmit}/>
+          {/* <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleSubmit}/> */}
           <CheckList restaurants={this.state.restaurants} selectItem={this.selectItem}/>
-          <StackItem />
+          <Stack selected={this.state.selected}/>
         </div>
         }
       </div>
