@@ -23,8 +23,6 @@ class App extends React.Component {
     this.getRestaurants =this.getRestaurants.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.selectItem = this.selectItem.bind(this);
-    this.unselectItem = this.unselectItem.bind(this);
-
   }
 
   handleLocationChange(e) {
@@ -83,24 +81,16 @@ class App extends React.Component {
 
   selectItem(e) {
     // if item not already checked and not in array, add to array
-    this.state.selected.includes(e.target.name) ?
+    !this.state.selected.includes(e.target.name) ?
       this.setState({
         selected: this.state.selected.concat(e.target.name)
       })
     :
-    null
-  }
-
-  unselectItem(e) {
-    // if item is checked, remove from array
-    !this.state.selected.includes(e.target.name) ?
       this.setState({
         selected: this.state.selected.filter((item) => {
-          return item.name !== e.target.name
+          return item !== e.target.name
         })
       })
-    :
-    null
   }
 
   render() {
@@ -114,7 +104,7 @@ class App extends React.Component {
         :
         <div>
           <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleSubmit}/>
-          <CheckList restaurants={this.state.restaurants} selectItem={this.selectItem} unselectItem={this.unselectItem}/>
+          <CheckList restaurants={this.state.restaurants} selectItem={this.selectItem}/>
           <StackItem />
         </div>
         }

@@ -5,7 +5,7 @@ const CheckList = (props) => {
   return (
     <div id='restaurantList'>
       {props.restaurants.map((restaurant) => {
-        return <CheckListItem restaurant={restaurant} key={restaurant.place_id} selectItem={props.selectItem} unselectItem={props.unselectItem}/>
+        return <CheckListItem restaurant={restaurant} key={restaurant.place_id} selectItem={props.selectItem}/>
       })}
     </div>
   )
