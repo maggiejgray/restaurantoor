@@ -21,7 +21,8 @@ class App extends React.Component {
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.getGeoCoordinates = this.getGeoCoordinates.bind(this);
     this.getRestaurants =this.getRestaurants.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
+    this.handleKeywordSubmit = this.handleKeywordSubmit.bind(this);
     this.selectItem = this.selectItem.bind(this);
   }
 
@@ -51,7 +52,7 @@ class App extends React.Component {
   }
 
   getRestaurants() {
-    axios.get(`/restaurants?coordinates=${this.state.coordinates}`)
+    axios.get(`/restaurants?coordinates=${this.state.coordinates}&keyword=${this.state.keyword}`)
     .then((res) => {
       this.setState({
         restaurants: res.data
@@ -62,7 +63,7 @@ class App extends React.Component {
     })
   }
 
-  handleSubmit(e) {
+  handleLocationSubmit(e) {
     e.preventDefault();
 
     this.setState({
@@ -76,7 +77,16 @@ class App extends React.Component {
     .catch((err) => {
       console.error('Error handling submit:', err)
     })
-    
+
+    document.getElementById('locationForm').reset();
+  }
+
+  handleKeywordSubmit(e) {
+    e.preventDefault();
+
+    this.getRestaurants();
+
+    document.getElementById('keywordForm').reset();
   }
 
   selectItem(e) {
@@ -98,11 +108,11 @@ class App extends React.Component {
         <h1>restaurantor</h1>
         { this.state.currentPage === 'landing' ? 
         <div>
-          <Search id={'location'} onChange={this.handleLocationChange} onClick={this.handleSubmit}/>
+          <Search id={'location'} onChange={this.handleLocationChange} onClick={this.handleLocationSubmit}/>
         </div>
         :
         <div>
-          {/* <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleSubmit}/> */}
+          <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleKeywordSubmit}/>
           <CheckList restaurants={this.state.restaurants} selectItem={this.selectItem}/>
           <Stack selected={this.state.selected}/>
         </div>

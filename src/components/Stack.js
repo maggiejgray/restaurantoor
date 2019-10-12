@@ -6,7 +6,7 @@ const Stack = (props) => {
     <div>
       {props.selected.map((item) => {
         return (
-          <StackItem item={item}/> 
+          <StackItem item={item} key={item}/> 
         )
       })}
     </div>
