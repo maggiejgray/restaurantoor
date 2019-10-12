@@ -22,8 +22,7 @@ app.get('/location', (req, res) => {
 
 
 app.get('/restaurants', (req, res) => {
-  // console.log('req:', req)
-  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.coordinates}&radius=1500&type=restaurant&key=${process.env.GOOGLE_API_KEY}`)
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.coordinates}&keyword=${req.query.keyword}&radius=1500&type=restaurant&key=${process.env.GOOGLE_API_KEY}`)
   .then((data) => {
     res.send(data.data.results);
   })
