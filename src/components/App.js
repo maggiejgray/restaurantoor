@@ -3,6 +3,7 @@ import axios from 'axios';
 import Search from './Search';
 import CheckList from './CheckList';
 import Stack from './Stack';
+import '../styles.css';
 
 class App extends React.Component {
   constructor(props) {

@@ -20,6 +20,11 @@ module.exports = {
             presets: ['@babel/preset-react', '@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.css$/,
+        include: SRC_DIR,
+        use: ["style-loader", "css-loader"]
       }
     ]
   }
