@@ -103,16 +103,32 @@ class App extends React.Component {
       })
   }
 
+  makeDecision() {
+    // iterate through selected at slowing speeds for x amount of seconds
+
+    // on decision, use key/placeID to getRestaurantDetails()
+  }
+
+  getRestaurantDetails() {
+    axios.get(`/restaurantDetails?placeID=`)
+    .then((res) => {
+      // add details for modal (name, number, website, $, rating)
+    })
+    .catch((err) => {
+      console.error('Error getting restaurant details:', err)
+    })
+  }
+
   render() {
     return (
       <div id='body'>
         <h1>restaurantor</h1>
         { this.state.currentPage === 'landing' ? 
-        <div>
+        <div id='landing'>
           <Search id={'location'} onChange={this.handleLocationChange} onClick={this.handleLocationSubmit}/>
         </div>
         :
-        <div>
+        <div id='decision'>
           <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleKeywordSubmit}/>
           <CheckList restaurants={this.state.restaurants} selectItem={this.selectItem}/>
           <Stack selected={this.state.selected}/>

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const axios = require('axios');
 
 const app = express();
@@ -23,6 +24,16 @@ app.get('/location', (req, res) => {
 
 app.get('/restaurants', (req, res) => {
   axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.coordinates}&keyword=${req.query.keyword}&radius=1500&type=restaurant&key=${process.env.GOOGLE_API_KEY}`)
+  .then((data) => {
+    res.send(data.data.results);
+  })
+  .catch((err) => {
+    console.error('Error getting restaurants in server:', err)
+  })
+})
+
+app.get('/restaurantDetails', (req, res) => {
+  axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.query.placeID}&fields=name,formatted_address,opening_hours,website,price_level,rating,formatted_phone_number&key=${process.env.GOOGLE_API_KEY}`)
   .then((data) => {
     res.send(data.data.results);
   })
