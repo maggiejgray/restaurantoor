@@ -123,11 +123,11 @@ class App extends React.Component {
       <div id='body'>
         <h1>restaurantor</h1>
         { this.state.currentPage === 'landing' ? 
-        <div id='landing'>
+        <div id='landingContainer'>
           <Search id={'location'} onChange={this.handleLocationChange} onClick={this.handleLocationSubmit}/>
         </div>
         :
-        <div id='decision'>
+        <div id='decisionContainer'>
           <Search id={'keyword'} onChange={this.handleKeywordChange} onClick={this.handleKeywordSubmit}/>
           <CheckList restaurants={this.state.restaurants} selectItem={this.selectItem}/>
           <Stack selected={this.state.selected}/>

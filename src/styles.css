@@ -1,8 +1,52 @@
 @font-face { 
   font-family: 'Poiret One'; 
   src: url('./fonts/PoiretOne-Regular.ttf'); 
-} 
+}
 
-html {
+body, html {
+  height: 100%;
+}
+
+h1 {
   font-family: 'Poiret One';
+}
+
+#landingContainer {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.inputBox, .submitButton {
+  padding: 0.5em;
+}
+
+.inputBox {
+  margin: 1em; 
+}
+
+.submitButton {
+  border-radius: 10%;
+}
+
+#stack {
+  display: inline;
+  float: right;
+}
+
+#restaurantList {
+  display: inline;
+  float: left;
+}
+
+.stackItem {
+  width: 300px;
+  height: 3em;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+.stackText {
+  vertical-align: middle;
 }

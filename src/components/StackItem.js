@@ -2,8 +2,8 @@ import React from 'react';
 
 const StackItem = (props) => {
   return (
-    <div>
-      <p>{props.item}</p>
+    <div class='stackItem'>
+      <p class='stackText'>{props.item}</p>
     </div>
   )
 };
