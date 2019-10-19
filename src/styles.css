@@ -5,10 +5,13 @@
 
 body, html {
   height: 100%;
+  font-family: 'Poiret One';
+  font-size: 1rem;
 }
 
 h1 {
-  font-family: 'Poiret One';
+  font-size: 3rem;
+  margin: 1em;
 }
 
 #landingContainer {
@@ -23,6 +26,9 @@ h1 {
 
 .inputBox {
   margin: 1em; 
+  font-size: 1rem;
+  width: 500px;
+  height: 2em;
 }
 
 .submitButton {
@@ -40,8 +46,8 @@ h1 {
 }
 
 .stackItem {
-  width: 300px;
-  height: 3em;
+  width: 500px;
+  height: auto;
   background: black;
   color: white;
   text-align: center;
@@ -49,4 +55,12 @@ h1 {
 
 .stackText {
   vertical-align: middle;
+}
+
+label, p {
+  font-size: 2rem;
+}
+
+p {
+  padding: 5px;
 }

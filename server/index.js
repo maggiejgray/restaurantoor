@@ -19,7 +19,7 @@ app.get('/location', (req, res) => {
   .catch((err) => {
     console.error('Error getting location in server:', err);
   })
-})
+});
 
 
 app.get('/restaurants', (req, res) => {
@@ -30,7 +30,7 @@ app.get('/restaurants', (req, res) => {
   .catch((err) => {
     console.error('Error getting restaurants in server:', err)
   })
-})
+});
 
 app.get('/restaurantDetails', (req, res) => {
   axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.query.placeID}&fields=name,formatted_address,opening_hours,website,price_level,rating,formatted_phone_number&key=${process.env.GOOGLE_API_KEY}`)
@@ -40,7 +40,7 @@ app.get('/restaurantDetails', (req, res) => {
   .catch((err) => {
     console.error('Error getting restaurants in server:', err)
   })
-})
+});
 
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/../dist/index.html'));
